@@ -8,8 +8,8 @@
     "start": "live-server --open=src"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Jason Teplitz",
+  "license": "Apache-2.0",
   "dependencies": {
     "angular2": "2.0.0-alpha.42",
     "systemjs": "0.19.2"
