@@ -1,11 +1,7 @@
-import {NgZone} from 'angular2/src/core/zone';
-import {NgFor, NgIf} from 'angular2/src/core/directives';
-import {Component, View} from "angular2/src/core/metadata";
-import {FORM_DIRECTIVES} from 'angular2/src/core/forms';
+import {NgZone, Component, View} from 'angular2/core';
+import {NgFor, NgIf, FORM_DIRECTIVES} from 'angular2/common';
 import {BitmapService} from './services/bitmap';
-import {EventListener} from 'angular2/src/core/facade/browser';
 import {FileReader, Uint8ArrayWrapper} from './file_api';
-import {TimerWrapper} from 'angular2/src/core/facade/async';
 
 @Component({selector: 'image-demo', viewProviders: [BitmapService]})
 @View({templateUrl: 'app/image_demo.html', directives: [NgFor, NgIf, FORM_DIRECTIVES]})
@@ -23,7 +19,7 @@ export class ImageDemo {
     }
   }
 
-  handleReaderLoad(reader: FileReader): EventListener {
+  handleReaderLoad(reader: FileReader): (e) => void{
     return (e) => {
       var buffer = reader.result;
       this.images.push({
@@ -38,7 +34,7 @@ export class ImageDemo {
     for (var i = 0; i < this.images.length; i++) {
       this.images[i].filtering = true;
 
-      TimerWrapper.setTimeout(this._filter(i), 0);
+      setTimeout(this._filter(i), 0);
     }
   }
 
